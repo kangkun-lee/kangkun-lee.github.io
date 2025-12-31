@@ -42,9 +42,12 @@ jobs:
       - name: Setup theme
         run: |
           mkdir -p themes
-          rm -rf themes/ananke
-          git clone --depth 1 --branch main https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+          if [ -d "themes/ananke" ]; then
+            rm -rf themes/ananke
+          fi
+          git clone --depth 1 --branch main https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke || exit 1
           rm -rf themes/ananke/.git
+          ls -la themes/ananke/layouts || exit 1
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -65,11 +68,14 @@ jobs:
           path: ./public
 
   deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
