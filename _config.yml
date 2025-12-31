@@ -13,13 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://github.com/kangkun-lee/kangkun-lee.github.io
-root: /kangkun-lee.github.io/
-
-deploy:
-  type: git
-  repo: https://github.com/kangkun-lee/kangkun-lee.github.io.git
-  branch: master
+url: https://kangkun-lee.github.io
+root: /
 
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -107,5 +102,8 @@ theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: ''
+## GitHub Actions를 사용하므로 deploy 설정은 주석 처리
+# deploy:
+#   type: git
+#   repo: https://github.com/kangkun-lee/kangkun-lee.github.io.git
+#   branch: gh-pages
