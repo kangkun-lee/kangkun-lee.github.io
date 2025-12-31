@@ -1,0 +1,50 @@
+baseURL = 'https://kangkun-lee.github.io'
+languageCode = 'ko'
+title = '기술 블로그'
+theme = 'ananke'
+
+# 메뉴 설정
+[[menu.main]]
+  identifier = "home"
+  name = "홈"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "posts"
+  name = "포스트"
+  url = "/posts/"
+  weight = 2
+
+# 파라미터 설정
+[params]
+  author = "kangkun-lee"
+  description = "기술 블로그"
+  
+  # 소셜 링크 (필요시 수정)
+  [params.social]
+    github = "kangkun-lee"
+    # twitter = "your_twitter"
+    # linkedin = "your_linkedin"
+
+# 타이핑 설정
+[markup]
+  [markup.highlight]
+    style = "github"
+    codeFences = true
+    lineNos = true
+    noClasses = false
+
+# 퍼머링크 설정
+[permalinks]
+  posts = "/:year/:month/:day/:title/"
+
+# 빌드 설정
+[build]
+  writeStats = true
+
+# 타이핑 설정
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
