@@ -28,14 +28,6 @@ yarn-error.log*
 .env
 .env.local
 
-# Hexo 빌드 산출물 (기존 - 더 이상 사용하지 않음)
-# 2024/
-# archives/
-# css/
-# js/
-# images/
-# index.html
-
 # Hugo static 폴더는 명시적으로 허용 (소스 파일이므로 Git에 포함되어야 함)
 !static/css/
 !static/js/
