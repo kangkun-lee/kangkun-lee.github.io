@@ -1,0 +1,16 @@
+<article class="post-card fade-in">
+  {{ if .Date }}
+    <div class="f6 post-date">
+      {{ .Date | time.Format (compare.Default "January 2, 2006" .Site.Params.date_format) }}
+    </div>
+  {{ end }}
+  <h2 class="f3 near-black post-title">
+    <a href="{{ .RelPermalink }}" class="link black dim">
+      {{ .Title }}
+    </a>
+  </h2>
+  <div class="nested-links f5 lh-copy nested-copy-line-height post-summary">
+    {{ .Summary }}
+  </div>
+  <a href="{{.RelPermalink}}" class="read-more-btn">{{ $.Param "read_more_copy" | compare.Default (lang.Translate "readMore") }}</a>
+</article>

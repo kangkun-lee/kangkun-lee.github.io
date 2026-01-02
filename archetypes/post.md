@@ -2,7 +2,7 @@
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
 draft: true
-categories: []
+categories: ["개발"]
 tags: []
 description: ""
 featured_image: ""

@@ -1,0 +1,72 @@
+{{/* 커스텀 CSS 및 JavaScript 로드 */}}
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/markdown.css" | relURL }}">
+<script src="{{ "js/custom.js" | relURL }}" defer></script>
+{{/* 히어로 섹션 생성형 아트는 home.html에서 로드 */}}
+{{/* wiki-links.js는 필요시 주석 해제 - 현재 성능 이슈로 비활성화 */}}
+{{/* <script src="{{ "js/wiki-links.js" | relURL }}" defer></script> */}}
+
+{{/* 수학식 렌더링을 위한 KaTeX - 모든 페이지에 로드 (summary에도 적용) */}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+  // defer 스크립트는 DOMContentLoaded 후 실행되므로, window.onload에서 실행
+  (function() {
+    function renderMath() {
+      if (typeof renderMathInElement !== 'undefined') {
+        try {
+          // 전체 body와 summary 영역 모두에 KaTeX 적용
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "$", right: "$", display: false},
+              {left: "\\[", right: "\\]", display: true},
+              {left: "\\(", right: "\\)", display: false}
+            ],
+            throwOnError: false,
+            strict: false
+          });
+          
+          // summary 영역에도 별도로 적용 (이미 body에 포함되지만 확실히 하기 위해)
+          const summaryElements = document.querySelectorAll('.post-summary, .nested-copy-line-height');
+          summaryElements.forEach(function(element) {
+            renderMathInElement(element, {
+              delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "\\(", right: "\\)", display: false}
+              ],
+              throwOnError: false,
+              strict: false
+            });
+          });
+        } catch (e) {
+          console.warn('KaTeX rendering error:', e);
+        }
+      } else {
+        // 최대 3초까지만 재시도 (30회 * 100ms)
+        if (!window.katexRetryCount) window.katexRetryCount = 0;
+        if (window.katexRetryCount < 30) {
+          window.katexRetryCount++;
+          setTimeout(renderMath, 100);
+        } else {
+          console.warn('KaTeX auto-render failed to load after 3 seconds');
+        }
+      }
+    }
+    
+    // defer 스크립트는 DOMContentLoaded 후 실행되므로, 약간의 지연 후 실행
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(renderMath, 50);
+      });
+    } else {
+      setTimeout(renderMath, 50);
+    }
+  })();
+</script>
+
+{{/* 추가 메타 태그 및 리소스 */}}
+<meta name="theme-color" content="#0a0e27">

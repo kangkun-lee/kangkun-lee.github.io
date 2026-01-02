@@ -1,6 +1,6 @@
 baseURL = 'https://kangkun-lee.github.io'
 languageCode = 'ko'
-title = '기술 블로그'
+title = 'kangkun-lee blog'
 theme = 'ananke'
 
 # 메뉴 설정
@@ -12,32 +12,97 @@ theme = 'ananke'
 
 [[menu.main]]
   identifier = "posts"
-  name = "포스트"
+  name = "Posts"
   url = "/posts/"
   weight = 2
+
+[[menu.main]]
+  identifier = "notes"
+  name = "Notes"
+  url = "/notes/"
+  weight = 3
+
+[[menu.main]]
+  identifier = "papers"
+  name = "Papers"
+  url = "/papers/"
+  weight = 4
+
+[[menu.main]]
+  identifier = "competitions"
+  name = "Competitions"
+  url = "/competitions/"
+  weight = 5
+
+[[menu.main]]
+  identifier = "projects"
+  name = "Projects"
+  url = "/projects/"
+  weight = 6
+
+[[menu.main]]
+  identifier = "experience"
+  name = "Experience"
+  url = "/experience/"
+  weight = 7
+
+[[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 8
 
 # 파라미터 설정
 [params]
   author = "kangkun-lee"
-  description = "기술 블로그"
+  description = "머신러닝, 딥러닝, 통계, 컴퓨터 과학 등 다양한 기술 주제를 다루는 블로그입니다."
+  mainSections = ["posts", "notes", "papers", "competitions", "projects", "experience", "series"]
   
   # 소셜 링크 (필요시 수정)
   [params.social]
     github = "kangkun-lee"
+    linkedin = "your_linkedin"  # LinkedIn 사용자명으로 변경하세요
+    email = "your-email@example.com"  # 이메일 주소로 변경하세요
     # twitter = "your_twitter"
-    # linkedin = "your_linkedin"
+  
+  # Ananke 테마 설정
+  [params.ananke]
+    show_recent_posts = true
+  
+  # 최근 포스트 개수
+  recent_posts_number = 6
 
-# 타이핑 설정
+# 마크다운 설정
 [markup]
+  # Goldmark 마크다운 엔진 설정
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # HTML 태그 허용
+      hardWraps = false
+  
+  # 코드 하이라이팅 설정
   [markup.highlight]
     style = "github"
     codeFences = true
     lineNos = true
     noClasses = false
+    anchorLineNos = false
+    lineNumbersInTable = true
+  
+  # 수학식 렌더링을 위한 설정
+  [markup.goldmark.extensions]
+    [markup.goldmark.extensions.typographer]
+      disable = false
+      enable = true
 
 # 퍼머링크 설정
 [permalinks]
   posts = "/:year/:month/:day/:title/"
+  notes = "/notes/:title/"
+  papers = "/papers/:title/"
+  competitions = "/competitions/:title/"
+  projects = "/projects/:title/"
+  experience = "/experience/:title/"
 
 # 빌드 설정
 [build]
@@ -47,4 +112,3 @@ theme = 'ananke'
 [taxonomies]
   category = "categories"
   tag = "tags"
-

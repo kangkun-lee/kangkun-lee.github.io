@@ -1,0 +1,16 @@
+{{/* 간단하고 깔끔한 리스트 아이템 템플릿 */}}
+<article class="post-list-item">
+  <div class="post-list-content">
+    <div class="post-list-header">
+      {{ if .Date }}
+        <time class="post-list-date">{{ .Date.Format "2006.01.02" }}</time>
+      {{ end }}
+      <h2 class="post-list-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+    </div>
+    {{ if .Summary }}
+      <p class="post-list-summary">{{ .Summary | truncate 120 }}</p>
+    {{ end }}
+  </div>
+</article>

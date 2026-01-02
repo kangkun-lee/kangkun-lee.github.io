@@ -1,0 +1,21 @@
+# 개념 사전 - 자동 링크를 위한 개념 정의
+# 형식: "개념명": "링크할 포스트 제목 또는 URL"
+
+concepts:
+  # 머신러닝 관련
+  "선형 회귀": "Linear Regression"
+  "Linear Regression": "Linear Regression"
+  "로지스틱 회귀": "Logistic Regression"
+  "Logistic Regression": "Logistic Regression"
+  "릿지 회귀": "Ridge Regression"
+  "Ridge Regression": "Ridge Regression"
+  "라쏘 회귀": "Lasso Regression"
+  "Lasso Regression": "Lasso Regression"
+  
+  # 통계 관련
+  "회귀": "Linear Regression"
+  "regression": "Linear Regression"
+  
+  # 기술 스택 (필요시 추가)
+  # "React": "React 기초"
+  # "Python": "Python 시작하기"

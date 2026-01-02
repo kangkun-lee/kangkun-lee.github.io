@@ -1,0 +1,39 @@
+{{/* layouts/_default/summary-card.html */}}
+<article class="summary-card">
+  {{/* 썸네일 이미지가 있는 경우 표시 (선택사항) */}}
+  {{ with .Params.featured_image }}
+  <div class="summary-card-image">
+    <a href="{{ $.RelPermalink }}">
+      <img src="{{ . }}" alt="{{ $.Title }}">
+    </a>
+  </div>
+  {{ end }}
+
+  <div class="summary-card-content">
+    <div class="summary-card-meta">
+      <span class="date">{{ .Date.Format "2006.01.02" }}</span>
+      {{ with .Params.categories }}
+        <span class="category">· {{ index . 0 }}</span>
+      {{ end }}
+    </div>
+
+    <h3 class="summary-card-title">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+
+    <p class="summary-card-excerpt">
+      {{ if .Params.description }}
+        {{ .Params.description | truncate 100 }}
+      {{ else }}
+        {{ .Summary | truncate 100 }}
+      {{ end }}
+    </p>
+
+    <a href="{{ .RelPermalink }}" class="read-more-link">
+      Read more
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</article>

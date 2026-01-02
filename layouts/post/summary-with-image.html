@@ -1,0 +1,30 @@
+{{ $featured_image := partials.Include "func/GetFeaturedImage.html" . }}
+<article class="post-card fade-in summary-with-image {{ compare.Conditional $featured_image "has-image" "" }}">
+  {{ if $featured_image }}
+    <div class="post-image-wrapper">
+      <a href="{{ .RelPermalink }}" class="post-image-link">
+        <img src="{{ $featured_image }}" alt="{{ .Title }}" class="post-featured-image" />
+      </a>
+    </div>
+  {{ end }}
+  
+  <div class="post-content-wrapper">
+    {{ if .Date }}
+      <div class="f6 post-date">
+        {{ .Date | time.Format (compare.Default "January 2, 2006" .Site.Params.date_format) }}
+      </div>
+    {{ end }}
+    <h2 class="f3 near-black post-title">
+      <a href="{{ .RelPermalink }}" class="link black dim">
+        {{ .Title }}
+      </a>
+    </h2>
+    <div class="nested-links f5 lh-copy nested-copy-line-height post-summary">
+      {{ .Summary }}
+    </div>
+    {{ with .Params.author | compare.Default .Site.Params.author }}
+      <p class="f6 lh-copy mv0 post-author">By {{ . }}</p>
+    {{- end -}}
+    <a href="{{.RelPermalink}}" class="read-more-btn">{{ $.Param "read_more_copy" | compare.Default (lang.Translate "readMore") }}</a>
+  </div>
+</article>

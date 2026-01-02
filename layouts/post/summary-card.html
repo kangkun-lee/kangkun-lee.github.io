@@ -1,0 +1,36 @@
+{{/* 홈페이지용 간결한 카드 프리뷰 */}}
+<article class="post-card-preview">
+  <div class="post-card-header">
+    {{ if .Date }}
+      <div class="post-card-date">
+        {{ .Date | time.Format "2006.01.02" }}
+      </div>
+    {{ end }}
+    {{ if .Params.tags }}
+      <div class="post-card-tags">
+        {{ range first 2 .Params.tags }}
+          <span class="post-card-tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+  
+  <h3 class="post-card-title">
+    <a href="{{ .RelPermalink }}" class="post-card-title-link">
+      {{ .Title }}
+    </a>
+  </h3>
+  
+  {{ if .Summary }}
+    <p class="post-card-summary">
+      {{ truncate 120 .Summary }}
+    </p>
+  {{ end }}
+  
+  <a href="{{ .RelPermalink }}" class="post-card-read-more">
+    Read more
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </a>
+</article>

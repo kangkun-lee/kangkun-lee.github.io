@@ -2,10 +2,10 @@
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
 draft: true
-categories: []
+categories: ["notes"]
 tags: []
+series: []
 description: ""
-featured_image: ""
 show_reading_time: true
 toc: false
 author: "kangkun-lee"

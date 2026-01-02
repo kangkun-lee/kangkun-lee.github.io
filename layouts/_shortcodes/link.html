@@ -1,0 +1,34 @@
+{{/* 위키 스타일 링크 Shortcode
+사용법: {{< link "개념명" >}} 또는 {{< link "개념명" "표시 텍스트" >}}
+*/}}
+{{- $concept := .Get 0 | default "" -}}
+{{- $display := .Get 1 | default $concept -}}
+{{- $found := false -}}
+{{- $link := "" -}}
+
+{{/* 사이트 전체에서 해당 개념을 찾기 */}}
+{{- range where site.RegularPages "Section" "posts" -}}
+  {{- if or (eq (lower .Title) (lower $concept)) (in (lower .Title) (lower $concept)) -}}
+    {{- $found = true -}}
+    {{- $link = .RelPermalink -}}
+    {{- break -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* 태그에서도 찾기 */}}
+{{- if not $found -}}
+  {{- range site.Taxonomies.tags -}}
+    {{- if eq (lower .Page.Title) (lower $concept) -}}
+      {{- $found = true -}}
+      {{- $link = .Page.RelPermalink -}}
+      {{- break -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* 링크 생성 */}}
+{{- if $found -}}
+  <a href="{{ $link }}" class="wiki-link" title="{{ $concept }}에 대한 포스트">{{ $display }}</a>
+{{- else -}}
+  <span class="wiki-link-missing" title="'{{ $concept }}'에 대한 포스트를 찾을 수 없습니다">{{ $display }}</span>
+{{- end -}}

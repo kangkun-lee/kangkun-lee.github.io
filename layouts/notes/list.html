@@ -1,0 +1,41 @@
+{{ define "main" }}
+  <div class="container-custom section-spacing">
+    {{/* 헤더는 site-header.html에서 표시되므로 여기서는 Content만 표시 */}}
+    {{ with .Content }}
+      <div class="page-description-content">
+        <div class="f4 lh-copy nested-links">
+          {{ . }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{/* 모든 notes 페이지 가져오기 (서브디렉토리 포함) */}}
+    {{ $allPages := .Pages }}
+    
+    {{/* 서브디렉토리의 페이지들도 수집 */}}
+    {{ range .Sections }}
+      {{ $allPages = $allPages | collections.Append .Pages }}
+    {{ end }}
+    
+    {{/* 섹션 페이지(_index.md) 제외하고 일반 페이지만 필터링 */}}
+    {{ $regularPages := collections.Slice }}
+    {{ range $allPages }}
+      {{ if not .IsSection }}
+        {{ $regularPages = $regularPages | collections.Append . }}
+      {{ end }}
+    {{ end }}
+    
+    {{/* 날짜순 정렬 - sort 함수 사용 */}}
+    {{ $sortedPages := sort $regularPages "Date" "desc" }}
+    
+    {{ if gt (len $sortedPages) 0 }}
+      <section class="posts-list-section">
+        {{ range $sortedPages }}
+          {{ .Render "summary-simple" }}
+        {{ end }}
+      </section>
+    {{ else }}
+      <p>아직 작성된 노트가 없습니다.</p>
+    {{ end }}
+  </div>
+{{ end }}

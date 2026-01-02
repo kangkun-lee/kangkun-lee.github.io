@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <div class="container-custom section-spacing">
+    {{/* 헤더는 site-header.html에서 표시되므로 여기서는 Content만 표시 */}}
+    {{ with .Content }}
+      <div class="page-description-content">
+        <div class="f4 lh-copy nested-links">
+          {{ . }}
+        </div>
+      </div>
+    {{ end }}
+
+    <section class="posts-list-section">
+      {{ range .Pages }}
+        {{ .Render "summary-simple" }}
+      {{ end }}
+    </section>
+  </div>
+{{ end }}

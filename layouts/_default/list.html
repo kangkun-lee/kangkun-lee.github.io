@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <div class="container-custom section-spacing">
+    {{/* 헤더는 site-header.html에서 표시되므로 여기서는 Content만 표시 */}}
+    {{ with .Content }}
+      <div class="page-description-content">
+        <div class="f4 lh-copy nested-links">
+          {{ . }}
+        </div>
+      </div>
+    {{ end }}
+
+    <section class="posts-list-section">
+      {{ range .Paginator.Pages }}
+        {{ .Render "summary-simple" }}
+      {{ end }}
+    </section>
+    
+    {{/* Pagination */}}
+    {{ if .Paginator.HasPrev | or .Paginator.HasNext }}
+      <div class="pagination-wrapper">
+        {{ if .Paginator.HasPrev }}
+          <a href="{{ .Paginator.Prev.URL }}" class="pagination-link">← 이전</a>
+        {{ end }}
+        <span class="pagination-info">{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</span>
+        {{ if .Paginator.HasNext }}
+          <a href="{{ .Paginator.Next.URL }}" class="pagination-link">다음 →</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

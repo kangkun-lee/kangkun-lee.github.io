@@ -2,11 +2,16 @@
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
 draft: true
-categories: []
+categories: ["retrospective"]
 tags: []
 description: ""
-featured_image: ""
 show_reading_time: true
 toc: false
 author: "kangkun-lee"
 ---
+
+## 개요
+
+## 배운 점
+
+## 회고
