@@ -1,7 +1,7 @@
 {{/* 커스텀 CSS 및 JavaScript 로드 */}}
-<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/markdown.css" | relURL }}">
-<script src="{{ "js/custom.js" | relURL }}" defer></script>
+<link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+<link rel="stylesheet" href="{{ "css/markdown.css" | absURL }}">
+<script src="{{ "js/custom.js" | absURL }}" defer></script>
 {{/* 히어로 섹션 생성형 아트는 home.html에서 로드 */}}
 {{/* wiki-links.js는 필요시 주석 해제 - 현재 성능 이슈로 비활성화 */}}
 {{/* <script src="{{ "js/wiki-links.js" | relURL }}" defer></script> */}}
