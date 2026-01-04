@@ -2963,6 +2963,7 @@ footer[role="contentinfo"] {
   border-top: 1px solid rgba(10, 14, 39, 0.08);
   color: var(--color-text-primary) !important;
   transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+  min-height: 80px; /* 최소 높이 보장 */
 }
 
 [data-theme="dark"] footer[role="contentinfo"],
@@ -2972,14 +2973,137 @@ footer[role="contentinfo"] {
   }
 }
 
+footer[role="contentinfo"] > div {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 footer[role="contentinfo"] a {
   color: var(--color-text-primary) !important;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+footer[role="contentinfo"] a:hover {
+  color: var(--color-accent) !important;
 }
 
 footer[role="contentinfo"] .white-70 {
-  color: var(--color-text-primary) !important;
+  color: var(--color-text-secondary) !important;
+  font-size: 0.9375rem;
+  font-weight: 400;
 }
 
 footer[role="contentinfo"] .hover-white:hover {
   color: var(--color-accent) !important;
+}
+
+/* Footer 내부 요소 스타일 */
+footer[role="contentinfo"] .f4 {
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  color: var(--color-text-primary) !important;
+}
+
+footer[role="contentinfo"] .dn {
+  display: none !important;
+}
+
+footer[role="contentinfo"] .dib-ns {
+  display: inline-block !important;
+}
+
+/* 모바일에서 footer 개선 */
+@media (max-width: 768px) {
+  footer[role="contentinfo"] {
+    padding: var(--spacing-md) var(--spacing-sm) !important;
+    margin-top: var(--spacing-lg);
+    border-top: 2px solid rgba(10, 14, 39, 0.15) !important; /* 모바일에서 더 두껍고 진하게 */
+    min-height: auto;
+    background-color: var(--color-bg-primary) !important;
+  }
+  
+  [data-theme="dark"] footer[role="contentinfo"],
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) footer[role="contentinfo"] {
+      border-top-color: rgba(255, 255, 255, 0.2) !important;
+    }
+  }
+  
+  footer[role="contentinfo"] > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md); /* 간격 증가 */
+    padding: 0;
+    width: 100%;
+  }
+  
+  footer[role="contentinfo"] a,
+  footer[role="contentinfo"] .white-70,
+  footer[role="contentinfo"] .f4 {
+    font-size: 0.9375rem !important; /* 모바일에서도 읽기 쉬운 크기 */
+    line-height: 1.8;
+    font-weight: 500 !important;
+    color: var(--color-text-primary) !important;
+  }
+  
+  /* 모바일에서 copyright 표시 */
+  footer[role="contentinfo"] .dn {
+    display: block !important;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  /* 소셜 링크 모바일 스타일 */
+  footer[role="contentinfo"] .ananke-socials {
+    display: flex !important;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  footer[role="contentinfo"] .ananke-socials a {
+    font-size: 1rem !important;
+    padding: var(--spacing-xs);
+    color: var(--color-text-primary) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  footer[role="contentinfo"] {
+    padding: var(--spacing-md) var(--spacing-sm) !important;
+    border-top: 2px solid rgba(10, 14, 39, 0.15) !important;
+    background-color: var(--color-bg-primary) !important;
+  }
+  
+  [data-theme="dark"] footer[role="contentinfo"],
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) footer[role="contentinfo"] {
+      border-top-color: rgba(255, 255, 255, 0.2) !important;
+    }
+  }
+  
+  footer[role="contentinfo"] > div {
+    gap: var(--spacing-sm);
+  }
+  
+  footer[role="contentinfo"] a,
+  footer[role="contentinfo"] .white-70,
+  footer[role="contentinfo"] .f4 {
+    font-size: 0.875rem !important; /* 작은 화면에서도 읽기 쉬운 크기 */
+    line-height: 1.8;
+  }
+  
+  footer[role="contentinfo"] .ananke-socials a {
+    font-size: 0.9375rem !important;
+  }
 }
