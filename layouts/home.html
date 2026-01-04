@@ -44,16 +44,51 @@
               </svg>
             </a>
           {{ end }}
+          <button class="dark-mode-toggle" aria-label="다크모드 전환" title="다크모드 전환">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 1v3M12 20v3M23 12h-3M4 12H1M19.07 4.93l-2.12 2.12M6.05 17.95l-2.12 2.12M19.07 19.07l-2.12-2.12M6.05 6.05L3.93 3.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="floating-nav-hamburger" aria-label="메뉴 열기" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
         </div>
       </div>
     </div>
   </nav>
+  
+  {{/* 모바일 메뉴 오버레이 - floating-nav 밖으로 이동 */}}
+  <div class="floating-nav-mobile-menu">
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-close" aria-label="메뉴 닫기" title="메뉴 닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <nav class="mobile-menu-nav">
+        {{ if .Site.Menus.main }}
+          {{ range .Site.Menus.main }}
+          <a class="mobile-menu-link" href="{{ .URL }}" title="{{ lang.Translate "pageTitle" . }}">
+            {{ .Name }}
+          </a>
+          {{ end }}
+        {{ end }}
+      </nav>
+    </div>
+  </div>
 
   {{/* 히어로 섹션 - 간결하고 임팩트 있게 */}}
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="hero-title">
-        <span class="hero-title-text">도전과 성장을 즐기는</span>
+        <span class="hero-title-text">도전과 성장, 배움을 즐기는</span>
         <span class="hero-title-accent">이강건입니다</span>
       </h1>
       {{ with .Site.Params.description }}

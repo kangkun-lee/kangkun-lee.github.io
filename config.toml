@@ -6,7 +6,7 @@ theme = 'ananke'
 # 메뉴 설정
 [[menu.main]]
   identifier = "home"
-  name = "홈"
+  name = "Home"
   url = "/"
   weight = 1
 
@@ -61,8 +61,8 @@ theme = 'ananke'
   # 소셜 링크 (필요시 수정)
   [params.social]
     github = "kangkun-lee"
-    linkedin = "your_linkedin"  # LinkedIn 사용자명으로 변경하세요
-    email = "your-email@example.com"  # 이메일 주소로 변경하세요
+    linkedin = "leekangkun"  # LinkedIn 사용자명으로 변경하세요
+    email = "lee.kangkun.ai@gmail.com"  # 이메일 주소로 변경하세요
     # twitter = "your_twitter"
   
   # Ananke 테마 설정
